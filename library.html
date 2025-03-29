@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+    <!-- font -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #parallax {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('blackhole2.jpg');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body id="parallax" class="p-8">
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        </a>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            <input type="text" id="search" placeholder="Cari e-book..." class="p-2 w-full border rounded w-1/2" onkeyup="searchBooks()">
+        </div>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto text-center py-16">
+        <div id="bookList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6 py-4">
+            <!-- E-Book List -->
+        </div>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 z-20 w-full p-2 bg-white shadow-sm md:flex md:items-center md:justify-between md:p-4 dark:bg-gray-800">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
+        </span>
+    </footer>
+
+    
+    <script>
+        const books = [
+          // e-book lain
+            { title: "15 Bentuk Kekerasan Seksual", author: "Author 1", link: "https://drive.google.com/file/d/1r3qUyAQ1Fd7JlI1ZBvmlXBbwmuKa0BS4/view?usp=drive_link", preview: "https://lh4.googleusercontent.com/4694Phk5rYvBIBb63lqgTlT0E7utW8F9n4plwTrOvu2GOQL-nMwcelqX_qF_oRiiFDg=w1200-h630-p" },
+            { title: "Aku Berpikir Maka Aku Tertawa", author: "Author 2", link: "https://drive.google.com/file/d/1tFJdbksh8paLrJ5tS9B3l0VaaUXQMUmI/view?usp=drive_link", preview: "https://down-id.img.susercontent.com/file/590cb5442a85671e07d106c24925990e" },
+            { title: "Orang-Orang Terbungkam", author: "Author 3", link: "https://drive.google.com/file/d/1tECO0Xg5YCI4TkaCLjvJWSfBjOkzLDUF/view?usp=drive_link", preview: "https://cdn.slidesharecdn.com/ss_thumbnails/albertcamus-orang-orangterbungkam-170830012544-thumbnail.jpg?width=640&height=640&fit=bounds" },
+            { title: "Analisa Marx Atas Produksi Kapitalis", author: "Author 4", link: "https://drive.google.com/file/d/1tD0VpxQRelAWyCqocIiGHYJK609ZFofj/view?usp=drive_link", preview: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1582075816l/51473535.jpg" },
+            { title: "Analisis Gender dan Transformasi  Sosial", author: "Author 5", link: "https://drive.google.com/file/d/1szkZjLdRFKhTD3f6MRufFx9jJkntRJIh/view?usp=drive_link", preview: "https://insistpress.com/wp-content/uploads/2020/10/AGTS_Sampul-RGB.jpg" },
+            { title: "Ateisme", author: "Author 1", link: "https://drive.google.com/file/d/1srNBi-uh7_myIVcfl6EIP3Hr0Uw4pxr3/view?usp=drive_link", preview: "https://media.istockphoto.com/id/1273886443/id/vektor/konsep-kata-ateisme.jpg?s=612x612&w=is&k=20&c=FBZgQjRQ_-ZDYfBNdTYd3Frj3Duq8c2FS-YD3EIcEG0=" },
+            { title: "Binder Filsafat Ilmu", author: "Author 2", link: "https://drive.google.com/file/d/1sptKhcYRNHbVA1SKRZAgFPfokjpB75W2/view?usp=drive_link", preview: "https://hermananis.com/wp-content/uploads/2023/02/1-5.jpg" },
+            { title: "Booklet Bergilir", author: "Author 3", link: "https://drive.google.com/file/d/1smewDMiD96hTwC-Ugz07IpU2Npfvr9r4/view?usp=drive_link", preview: "https://imgv2-2-f.scribdassets.com/img/document/399996299/original/b099fc6b54/1686852125?v=1" },
+            { title: "Communist Manifest", author: "Author 4", link: "https://drive.google.com/file/d/1skGDr1O5TNEhciIBI5hrnrLuLUtvyCu1/view?usp=drive_link", preview: "https://tse2.mm.bing.net/th?id=OIP.fttGgePOA-ue8UEG5RxVdgHaKl&pid=Api&P=0&h=220" },
+            { title: "MARXISME DAN EVOLUSI MANUSIA", author: "Author 5", link: "https://drive.google.com/file/d/1skA_Qp-E9io5J8NTY3p3qGndJVLevcuT/view?usp=drive_link", preview: "https://cdn.slidesharecdn.com/ss_thumbnails/dede-mulyanto-marxisme-dan-evolusi-manusia-170831035935-thumbnail.jpg?width=640&height=640&fit=bounds" },
+            { title: "Duham", author: "Author 1", link: "https://drive.google.com/file/d/1sjv2kxNPnY-kxesg6OzXczCB6g4jPOE9/view?usp=drive_link", preview: "https://imgv2-2-f.scribdassets.com/img/document/538102654/original/2ccb23d120/1677653430?v=1" },
+            { title: "Dunia Sophie", author: "Author 2", link: "https://drive.google.com/file/d/1sfZG5INnLBZyJo6KbMCg_P9S1PoxabBD/view?usp=drive_link", preview: "https://cdn.gramedia.com/uploads/items/9786024410209_dunia-sophie-republish.jpg" },
+            { title: "Ini Bukan Revolusiku", author: "Author 1", link: "https://drive.google.com/file/d/1sXJ1eeKHO6gtCpTMWqHs5iGwNFOigTJ6/view?usp=drive_link", preview: "https://bukuprogresif.com/wp-content/uploads/2020/08/ini-bukan-revolusiku.jpg" },
+            { title: "Filsafat Modern", author: "Author 2", link: "https://drive.google.com/file/d/1sXDcfdxDw28XMSxZByAgxaQ0XJMKx0qW/view?usp=drive_link", preview: "https://eyrcls.com/wp-content/uploads/2024/06/EYRCLS-Books-Collection-Buku-Filsafat-Modern-Dari-Machiavelli-sampai-Nietzsche-696x1037.jpeg" },
+            { title: "Falsafat Una", author: "Author 3", link: "https://drive.google.com/file/d/1sW2HyZEzw8U2zr9MdvCjJgq63_JQJW2w/view?usp=drive_link", preview: "https://imgv2-1-f.scribdassets.com/img/document/606863154/original/bca29bd7ed/1699555738?v=1" },
+            { title: "Filsafat Perempuan dalam Islam", author: "Author 4", link: "https://drive.google.com/file/d/1sVPx5wC_U6hhQsESoitIWXVXf9e0XP-N/view?usp=drive_link", preview: "https://www.jaritelunjuk.com/blog/wp-content/uploads/2021/11/Resensi-Buku-Filsafat-Perempuan-dalam-Islam-1.jpeg" },
+            { title: "Menemukan Kembali Liberalisme", author: "Author 5", link: "https://drive.google.com/file/d/1sVP4Gbj2C4clGV4cjXl1rKA84n3dTLdV/view?usp=drive_link", preview: "https://www.got1shop.com/images/202208/goods_img/2722084_G_1659493905943.jpg" },
+            { title: "Tentang Das Kapital Marx", author: "Author 1", link: "https://drive.google.com/file/d/1sORhXMDRaQJyhtvUAfsNFnQhgLPdFVND/view?usp=drive_link", preview: "https://i.thenile.io/r1000/9781906821043.jpg?r=5daf3ec7c8616" },
+            { title: "Gender and Sexual Identity", author: "Author 2", link: "https://drive.google.com/file/d/1sGvNJ0vGmgjysjC3z6Oifw6rBB2v1nIh/view?usp=drive_link", preview: "https://tse2.mm.bing.net/th?id=OIP.pyR4ktHIXhVckeGRxzYSSwAAAA&pid=Api&P=0&h=220" },
+            { title: "Ideologi Gender", author: "Author 3", link: "https://drive.google.com/file/d/1sGkkOHLoXshntWk-3xb6_cVbO0PNqgbo/view?usp=drive_link", preview: "https://down-id.img.susercontent.com/file/0e7e400c489634dd16aa5c67905ae83c" },
+            { title: "Novel Dunia Anna", author: "Author 4", link: "https://drive.google.com/file/d/1sGT0y_9dv-KEd6fbRXlmdqfMiK97fO2B/view?usp=drive_link", preview: "https://cdn.gramedia.com/uploads/items/97897943384212_Dunia-Anna.jpg" },
+            { title: "Kapitalisme dan Penindasan Perempuan", author: "Author 5", link: "https://drive.google.com/file/d/1sERchUhIfFlTNiit6Z6JCD13uFs95sQi/view?usp=drive_link", preview: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggfWB45SW4fGMvC2Gm95pZL_6iVwz2CWDX6QVtetDHfkmlUQWhHXhqmTzAUj2QhYoC3NTBGZGaB8MddJzOBG3x3G14XvsxvHl8cv5OI4RCKSfhKiQ_wNztZziwefWMx0SgjN5vK4kkxrc/s1600/1677254194087434-0.png" },
+            { title: "Sejarah Tuhan", author: "Author 1", link: "https://drive.google.com/file/d/1s7PzFbrCMy1mhLItkLetZkTYGb46fpYw/view?usp=drive_link", preview: "https://inc.mizanstore.com/aassets/img/com_cart/produk/sejarah-tuhan-republish.jpg" },
+            { title: "Manifesto Partai Komunis", author: "Author 2", link: "https://drive.google.com/file/d/1s5D8-mYgts72dVYJrZiGc55nqwxe7Aqg/view?usp=drive_link", preview: "https://bukuprogresif.com/wp-content/uploads/2018/05/manifesto-partai-komunis-1.jpg" },
+            { title: "Kewajiban Negara", author: "Author 3", link: "https://drive.google.com/file/d/1ro7AEdKAI_6zwVCTVki9aQGanBgy5GCy/view?usp=drive_link", preview: "https://cdn.gramedia.com/uploads/picture_meta/2023/2/1/mm7t5mysqjfgn2h2exh9ez.jpg" },
+            { title: "Kisah Penjual Buku yang Tewas di Bagdad", author: "Author 4", link: "https://drive.google.com/file/d/1rn7mee57AoFOdmvlwaOdTN-vfm_438S4/view?usp=drive_link", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1541255995i/42619467.jpg" },
+            { title: "Kemiskinan Filsafat", author: "Author 5", link: "https://drive.google.com/file/d/1rm8QNfV3hiJAgqtmW50SPCjM6Cu6rZtm/view?usp=drive_link", preview: "https://archive.org/services/img/buku-kemiskinan-filsafat-karl-marx/full/pct:200/0/default.jpg" },
+            { title: "Masa Depan Tuhan", author: "Author 1", link: "https://drive.google.com/file/d/1rgZVIPoHf3WGew1BXlT1sKJCz5N6pj6-/view?usp=drive_link", preview: "https://fs.genpi.co/uploads/data/images/Masa%20Depan%20Tuhan_Karen.PNG" },
+            { title: "MEIN KAMPF", author: "Author 2", link: "https://drive.google.com/file/d/1rW-qVEdUGbWdNFpxceNMqodBf6IQqkZe/view?usp=drive_link", preview: "http://prodimage.images-bn.com/pimages/9781523335701_p0_v2_s1200x630.jpg" },
+            { title: "Menalar Tuhan", author: "Author 3", link: "https://drive.google.com/file/d/1rSAhhB5Q0dOPEIgL-kMN2pa0saTSSARf/view?usp=drive_link", preview: "https://1.bp.blogspot.com/-3-b88ExCVg8/XpWpQYGKe1I/AAAAAAAAB-A/XUrnJi8BWVoHKhwOTkNrD_dNsHABw1XBACLcBGAsYHQ/s1600/jpeg-cover-menalar-tuhan.jpg" },
+            { title: "Menghalau Ekstremisme Kekerasan", author: "Author 4", link: "https://drive.google.com/file/d/1rQQFTRQWDGJnMdimDEIqkAWD1qv9pqRK/view?usp=drive_link", preview: "https://kbb.id/wp-content/uploads/2022/11/Menghalau_Ekstremisme_Kekerasan-1_page-0001.jpg" },
+            { title: "Sejarah Tuhan (Golden Edition)", author: "Author 5", link: "https://drive.google.com/file/d/1rPYi81raYyHEfSkyHSL5fxp2MmNOBi7Z/view?usp=drive_link", preview: "https://mizan.com/storage/images/book/covUS-207.jpg" },
+            { title: "SEX GENDER DAN REPRODUKSI KEKUASAAN", author: "Author 1", link: "https://drive.google.com/file/d/1rJlAwmAry4--S68PEHoD_R3QHFui8Rgt/view?usp=drive_link", preview: "https://down-id.img.susercontent.com/file/ddb5dd7a25840fd4ba80e9146554efea" },
+            { title: "Tahafut Al-Falasifah", author: "Author 2", link: "https://drive.google.com/file/d/1rFRxK8QeQO2SVggK3ntO99IedndxMcbq/view?usp=drive_link", preview: "https://down-id.img.susercontent.com/file/5557dbfbe94c2c5fa1457a721cacb7d5" },
+            { title: "Materialisme dan Empiriokritisme", author: "Author 3", link: "https://drive.google.com/file/d/1r3rRJigkiWa51wdxy2oZvuUxX2dFqYdF/view?usp=drive_link", preview: "https://tse4.mm.bing.net/th?id=OIP.Pezy1F6lgO0KVmPpLYHjHgHaKd&pid=Api&P=0&h=220" },
+            // engels
+            { title: "Anti Duhring", author: "Author 4", link: "https://drive.google.com/file/d/1tsyWkLTWTyRz72okvu7xLnULQ0DT7aeo/view?usp=drive_link", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1502476690i/187062.jpg" },
+            { title: "Socialism Utopian and Scientific", author: "Author 5", link: "https://drive.google.com/file/d/1uTRSVAOxH4Wal6tfb9gneQl8fh2NeEl6/view?usp=drive_link", preview: "https://m.media-amazon.com/images/I/51VoWc25xVL._SY445_SX342_.jpg" },
+            { title: "Synopsis of Capital", author: "Author 1", link: "https://drive.google.com/file/d/1uTLEpujRxIbufZtBb84ce3B5M1h3cWL0/view?usp=drive_link", preview: "https://image.aladin.co.kr/product/7477/98/cover500/1522883304_2.jpg" },
+            { title: "The Death of Karl Marx", author: "Author 2", link: "https://drive.google.com/file/d/1uT3PzrHq_y86-npALweJVKL68TPbZCkH/view?usp=drive_link", preview: "https://cpcml.ca/wp/wp-content/uploads/2023/03/AnniversaryofKarlMarxDeath-1600.jpg" },
+            { title: "The Origin of the Family, PPATS", author: "Author 3", link: "https://drive.google.com/file/d/1uQTir8Rcc9aGbVhKntCPv75SkgBljPGS/view?usp=drive_link", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1658682961i/61679066.jpg" },
+            { title: "Dialectics of Nature", author: "Author 4", link: "https://drive.google.com/file/d/1uGuVoUykU6DI8v4F2aTPSw0v1SVLoFCP/view?usp=drive_link", preview: "https://m.media-amazon.com/images/I/71SOcW9vfqL._SL1500_.jpg" },
+            { title: "Condition of the Working Class in England", author: "Author 5", link: "https://drive.google.com/file/d/1u3LzYp3ikbQnnT3c2Edbs-Z4VfFuFQOW/view?usp=drive_link", preview: "https://pictures.abebooks.com/ACANTHOPHYLLUM/md/md30570675368.jpg" },
+            { title: "The Peasant Question in France and Germany", author: "Author 5", link: "https://drive.google.com/file/d/1tyNs_pJrfD9g2EmPoOSjrHirpEJq148_/view?usp=drive_link", preview: "https://m.media-amazon.com/images/I/71vV35jlmyL._SL1500_.jpg" },
+            // marx articles
+            { title: "German French Yearbooks", author: "Author 5", link: "", preview: "" },
+            { title: "Labour Standard", author: "Author 5", link: "", preview: "" },
+            { title: "NRZ", author: "Author 5", link: "", preview: "" },
+            { title: "Marx Capital Vol.1", author: "Author 5", link: "", preview: "" },
+            { title: "Marx Capital Vol.2", author: "Author 5", link: "", preview: "" },
+            { title: "Marx Capital Vol.3", author: "Author 5", link: "", preview: "" },
+            { title: "Conflict with Bukunin", author: "Author 5", link: "", preview: "" },
+            { title: "Contribution to the Critique of Political Economy", author: "Author 5", link: "", preview: "" },
+            { title: "Critique of Hegels Philosophy of Right", author: "Author 5", link: "", preview: "" },
+            { title: "Critqueof the Gotha Programmer", author: "Author 5", link: "", preview: "" },
+            { title: "Economic and Philosophical Mauscripts", author: "Author 5", link: "", preview: "" },
+            { title: "Correspondence", author: "Author 5", link: "", preview: "" },
+            { title: "Writings on the North American Civil War", author: "Author 5", link: "", preview: "" },
+            { title: "Grundrisse", author: "Author 5", link: "", preview: "" },
+            { title: "James MIll", author: "Author 5", link: "", preview: "" },
+            { title: "The End of German Classical Philosop", author: "Author 5", link: "", preview: "" },
+            { title: "Mathematical Manuscripts 1881", author: "Author 5", link: "", preview: "" },
+            { title: "On Freedom of the Press", author: "Author 5", link: "", preview: "" },
+            { title: "On the Histsory of Early Christianity", author: "Author 5", link: "", preview: "" },
+            { title: "Poverty of Philosophy", author: "Author 5", link: "", preview: "" },
+            { title: "Rheinishe Zeitung", author: "Author 5", link: "", preview: "" },
+            { title: "The Civil War in France", author: "Author 5", link: "", preview: "" },
+            { title: "The Class Struggle in France", author: "Author 5", link: "", preview: "" },
+            { title: "The First International", author: "Author 5", link: "", preview: "" },
+            { title: "The German Ideology", author: "Author 5", link: "", preview: "" },
+            { title: "The Hague Congress", author: "Author 5", link: "", preview: "" },
+            { title: "The Holy Family", author: "Author 5", link: "", preview: "" },
+            { title: "The Housing Question", author: "Author 5", link: "", preview: "" },
+            { title: "Marx vs Bretano", author: "Author 5", link: "", preview: "" },
+            { title: "Wage Labour and Capital", author: "Author 5", link: "", preview: "" },
+            { title: "Young Marx", author: "Author 5", link: "", preview: "" },
+            // e-book club
+            { title: "A Concise Companion to Feminist Theory", author: "Author 5", link: "", preview: "https://i5.walmartimages.com/seo/Concise-Companions-to-Literature-and-Culture-A-Concise-Companion-to-Feminist-Theory-Paperback-9780631224037_0b6251c4-f689-4a3e-a574-fa5d4dde752c.1a448a9c9de38ced67e5e530240b6a29.jpeg?odnHeight=117&odnWidth=117&odnBg=FFFFFF" },
+            { title: "A Vindication of the Rights of Woman", author: "Author 5", link: "", preview: "https://cdn2.penguin.com.au/covers/original/9781784870393.jpg" },
+            { title: "Between Feminism and Materialism", author: "Author 5", link: "", preview: "https://media.s-bol.com/Y0RxRA8nBLYO/K1ON1RM/543x840.jpg" },
+            { title: "Beyond God the Father", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/51v3St02F+L.jpg" },
+            { title: "Capitalist Patriarchy", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/41fePkSLBJL._SY445_SX342_.jpg" },
+            { title: "Sejauh Mana Komitmen Negara", author: "Author 5", link: "", preview: "https://tse1.mm.bing.net/th?id=OIP.JCPV9LYzvMnJEdsl9FMEswHaLH&pid=Api&P=0&h=220" },
+            { title: "Contemporary French", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/71cw0-n-mxL._SL1500_.jpg" },
+            { title: "Encyclopedia of Feminist Literature", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/51kcBrCSMSL.jpg" },
+            { title: "Women and Islamic Cultures", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/41nyhFomrlL._SY445_SX342_.jpg" },
+            { title: "Essays on Equality, Law and Education", author: "Author 5", link: "", preview: "https://i.ebayimg.com/images/g/nVgAAOSwmwNjQU2a/s-l500.jpg" },
+            { title: "Feminism Pocket Essential series", author: "Author 5", link: "", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328697015i/10669403.jpg" },
+            { title: "Feminism Political Economy", author: "Author 5", link: "", preview: "https://cup-us.imgix.net/covers/9781788212649.jpg?auto=format&w=350" },
+            { title: "Feminism and History", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/71zejlk4x4L._SY522_.jpg" },
+            { title: "Feminism and Masculinities", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/71Y7E9kwq9L._SL1500_.jpg" },
+            { title: "Feminism and Modern Philosophy", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/418PmcXpTBL._SL500_.jpg" },
+            { title: "Feminism As Critique", author: "Author 5", link: "", preview: "https://i.ebayimg.com/images/g/7XkAAOSwN6hf~cP4/s-l500.jpg" },
+            { title: "Feminism Beyond Modernism", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/31lqBn2QaFL._SY445_SX342_.jpg" },
+            { title: "Feminism Postmodernism Development", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/51g2SWV9I6L._SY445_SX342_.jpg" },
+            { title: "Feminist Political Theory", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/81h0ZVyeflL._SL1500_.jpg" },
+            { title: "Feminist Politics and Human Nature", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/41V185j8ZqL._SY445_SX342_.jpg" },
+            { title: "Feminist Studies", author: "Author 5", link: "", preview: "https://i.ebayimg.com/images/g/6scAAOSwW-FkUYF1/s-l500.jpg" },
+            { title: "Feminist Theory and Literary Practice", author: "Author 5", link: "", preview: "http://prodimage.images-bn.com/pimages/9780745316017_p0_v2_s1200x630.jpg" },
+            { title: "Feminist Thought", author: "Author 5", link: "", preview: "https://images.routledge.com/common/jackets/crclarge/978036786/9780367861094.jpg" },
+            { title: "Further Adventures of the Dialectic of Sex", author: "Author 5", link: "", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1315682622i/8357052.jpg" },
+            { title: "Gender and Everyday Life", author: "Author 5", link: "", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348008916i/6070716.jpg" },
+            { title: "Gender Perspectives on Reproduction and Sexuality", author: "Author 5", link: "", preview: "https://pictures.abebooks.com/isbn/9780762310883-us.jpg" },
+            { title: "Gender Trouble", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/71JDHGl742L._SL1500_.jpg" },
+            { title: "Intersections Between Feminist and Queer Theory", author: "Author 5", link: "", preview: "https://cf.shopee.co.id/file/9478f6a66f0dc1917de5de05d21aee20" },
+            { title: "Introducing Postfeminism", author: "Author 5", link: "", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387747703i/431976.jpg" },
+            { title: "Introduction to Sociology", author: "Author 5", link: "", preview: "https://i5.walmartimages.com/seo/An-Introduction-to-Sociology-Feminist-Perspectives-Third-Edition-Pamela-Abbott-Claire-Wallace-and-Melissa-Tyler_ccc6b2d8-f137-4185-9447-87baab7ccb20.64257d8e72959db46a7feec6e36d1d39.jpeg" },
+            { title: "Just Methods An Interdisciplinary Feminist Reader", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/41AuuXBZHaL.jpg" },
+            { title: "Feminist Theory and Research", author: "Author 5", link: "", preview: "https://i5.walmartimages.com/asr/808ac657-f9b2-486b-bdc4-38241ae1a7d3_1.44da811b4d570fc0fcb7e57ad1405945.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff" },
+            { title: "Reproductive Health Indicators", author: "Author 5", link: "", preview: "https://cdn-2.zlibrary.to/media/content/thumbnails/7b0b07cc-09c9-40f9-ad49-d82524ded59e.webp" },
+            { title: "Sex Differences in Labor Markets", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/311FUJZq-DL._SY445_SX342_.jpg" },
+            { title: "Sexual Politics", author: "Author 5", link: "", preview: "https://pictures.abebooks.com/isbn/9781135411657-es.jpg" },
+            { title: "Socialism Feminism and Philosophy", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/515JP-8foQL._SY445_SX342_.jpg" },
+            { title: "The Dialectic of Sex", author: "Author 5", link: "", preview: "https://0.academia-photos.com/attachment_thumbnails/60765820/mini_magick20191001-15337-bkd30n.png?1569992703" },
+            { title: "The Feminine Mystique", author: "Author 5", link: "", preview: "https://i.pinimg.com/originals/fe/16/21/fe16213ca3f923858d4f70cf76e23488.jpg" },
+            { title: "Feminism and Postfeminism", author: "Author 5", link: "", preview: "http://images.tandf.co.uk/common/jackets/crclarge/978041524/9780415243100.jpg" },
+            { title: "The Subjection Of Women", author: "Author 5", link: "", preview: "http://images.tandf.co.uk/common/jackets/crclarge/978076580/9780765807663.jpg" },
+            { title: "The Voice of Harriet Taylor Mill", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/71etLcDhvmL._SL1500_.jpg" },
+            { title: "Theoretical Perspectives on Gender and Development", author: "Author 5", link: "", preview: "https://images-na.ssl-images-amazon.com/images/I/41RKC7F3MHL._SY291_BO1,204,203,200_QL40_ML2_.jpg" },
+            { title: "Theorizing Feminism", author: "Author 5", link: "", preview: "https://images.routledge.com/common/jackets/crclarge/978081336/9780813367880.jpg" },
+            { title: "Theorizing Patriarchy", author: "Author 5", link: "", preview: "https://covers.openlibrary.org/b/id/8477679-L.jpg" },
+            { title: "Thinking Through", author: "Author 5", link: "", preview: "https://m.media-amazon.com/images/I/614zdg11D1L._SL1500_.jpg" },
+            { title: "Virginia Woolf", author: "Author 5", link: "", preview: "https://i5.walmartimages.com/seo/Virginia-Woolf-Feminism-and-the-Reader-Hardcover-9781403969651_0c907d1b-ba6d-445e-b3fc-8cb4533a3504_1.09231ec5531df8d2f01fa277f26d7ca0.jpeg" },
+            { title: "Women Islam and Modernity", author: "Author 5", link: "", preview: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348997893i/635086.jpg" },
+            { title: "Working with Men", author: "Author 5", link: "", preview: "https://i.ebayimg.com/images/g/V-sAAOSw8zNepmyp/s-l960.jpg" },
+            { title: "", author: "Author 5", link: "", preview: "" },
+            { title: "", author: "Author 5", link: "", preview: "" },
+        ];
+
+        function displayBooks(filteredBooks) {
+            const bookList = document.getElementById("bookList");
+            bookList.innerHTML = "";
+            
+            if (filteredBooks.length === 0) {
+                bookList.innerHTML = '<p class="text-gray-500">Tidak ada e-book yang ditemukan.</p>';
+                return;
+            }
+
+            filteredBooks.forEach(book => {
+                const bookCard = document.createElement("div");
+                bookCard.className = "bg-gray-700 p-4 rounded-lg shadow flex flex-col items-center text-center";
+                bookCard.innerHTML = `
+                    <img src="${book.preview}" alt="${book.title}" class="w-32 h-40 object-cover mb-2 rounded">
+                    <h2 class="text-lg font-semibold">${book.title}</h2>
+                    <p class="text-white-500 text-sm">${book.author}</p>
+                    <a href="${book.link}" class="text-white mt-2 bg-blue-500 hover:bg-blue-700 rounded p-2 font-semibold">Baca e-book</a>
+                `;
+                bookList.appendChild(bookCard);
+            });
+        }
+
+        function searchBooks() {
+            const query = document.getElementById("search").value.toLowerCase();
+            const filteredBooks = books.filter(book => book.title.toLowerCase().includes(query));
+            displayBooks(filteredBooks);
+        }
+
+        // Tampilkan semua buku saat pertama kali dimuat
+        displayBooks(books);
+
+        
+
+    </script>
+</body>
+</html>

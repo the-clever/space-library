@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
+    <!-- font -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #parallax {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('blackhole2.jpg');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #parallax-2 {
+            width: 100%;
+            height: 10vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('blackhole2.jpg');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #description {
+            width: 100%;
+            height: auto;
+            background-color: gray;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <a href="library.html" class="inline-flex justify-center items-center px-2 py-2 text-base font-2x1 font-semibold text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Get Started
+                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </a>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+        </div>
+        </div>
+    </nav>
+  
+
+    <div id="parallax" class="flex justify-center items-center h-screen">
+        <div class="text-center">
+            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Space Library</h1>
+            <p class="mb-8 text-lg font-normal text-gray-500 text-xl sm:px-16 lg:px-48 dark:text-gray-400 italic">"Jelajahi dunia pengetahuan tanpa batas dengan koleksi 100+ e-book pilihan kami! Temukan beragam bacaan dari berbagai kategori, siap diakses kapan saja dan di mana saja."</p>
+                <a href="library.html" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                    Get Started
+                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+                <a href="#description" class="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                    Learn more
+                </a>  
+            </div>
+        </div>
+    </div>
+
+    <div class="px-16" id="description">
+        <h1 class="mb-4 text-3xl font-extrabold py-5">We invest in the worlds potential</h1>
+        <p class="py-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minima alias omnis sint at eveniet, quibusdam nam. Pariatur rerum nobis odit ex voluptatum, voluptate reiciendis adipisci quia? Quaerat officia natus voluptates veniam obcaecati sunt, hic porro. Veritatis ut repudiandae culpa, sed, odit maxime quidem dignissimos velit dolore recusandae eveniet vero. Sunt nobis, odit sapiente et vel porro? Doloribus minima sit velit numquam? Ex eos aspernatur iste, aliquid unde, sit excepturi adipisci corrupti rerum doloribus harum vel magni quis quos veniam ullam facere quisquam sed qui delectus maxime! Vitae quas, neque aut voluptate ratione officiis eius. Officia dolorum veniam quidem nam.
+        </p>
+    </div>
+
+    <div id="parallax-2" class="flex justify-center items-center h-screen"></div>
+
+    <section style="background-color: gray;">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+            <div class="mx-auto max-w-2xl md:text-center">
+                <h1 class="mb-4 text-5xl font-extrabold py-5" style="color: white;">Testimonials</h1>
+            </div>
+            <ul role="list"
+                class="mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:max-w-none lg:grid-cols-3">
+                <li>
+                    <ul role="list" class="flex flex-col gap-y-6 sm:gap-y-8">
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, quia!</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Muhammad Ibnu Rojab</div>
+                                        <div class="mt-1 text-sm text-slate-500">CEO at Lynch LLC</div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, illo.</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Muhammad Jabbar Raihan Rahmadi</div>
+                                        <div class="mt-1 text-sm text-slate-500">Director at Velocity Industries
+                                        </div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole2.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, alias!</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Ahmad Firman Gani</div>
+                                        <div class="mt-1 text-sm text-slate-500">Founder of West Inc</div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole2.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul role="list" class="flex flex-col gap-y-6 sm:gap-y-8">
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsum aliquid dolores?</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Hilya Nihla Nafila</div>
+                                        <div class="mt-1 text-sm text-slate-500">Founder of Kiehn and Sons</div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole2.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, expedita error.</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Nuni Nurhaliza</div>
+                                        <div class="mt-1 text-sm text-slate-500">COO at Armstrong Inc</div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul role="list" class="flex flex-col gap-y-6 sm:gap-y-8">
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">I used to have to remit tax to
+                                        the EU and with TaxPal I somehow don’t have to do that anymore. Nervous to
+                                        travel there now though.</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Peter Renolds</div>
+                                        <div class="mt-1 text-sm text-slate-500">Founder of West Inc</div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole2.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
+                                    aria-hidden="true" width="105" height="78"
+                                    class="absolute top-6 left-6 fill-slate-100">
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">This is the fourth email I’ve
+                                        sent to your support team. I am literally being held in jail for tax fraud.
+                                        Please answer your damn emails, this is important.</p>
+                                </blockquote>
+                                <figcaption
+                                    class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                    <div>
+                                        <div class="font-display text-base text-slate-900">Amy Hahn</div>
+                                        <div class="mt-1 text-sm text-slate-500">Director at Velocity Industries
+                                        </div>
+                                    </div>
+                                    <div class="overflow-hidden rounded-full bg-slate-50"><img src="blackhole.jpg" loading="lazy"
+                                            width="56" height="56" decoding="async" data-nimg="1"
+                                            class="h-14 w-14 object-cover" style="color:transparent">
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="fixed bottom-0 left-0 z-20 w-full p-2 bg-white shadow-sm md:flex md:items-center md:justify-between md:p-4 dark:bg-gray-800">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
+        </span>
+    </footer>
+</body>
+</html>
